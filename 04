@@ -1,0 +1,86 @@
+#1)
+def salary_calculation():
+    try:
+        time = float(input('Количество отработанных часов: '))
+        salary = float(input('Сумма оплаты труда за 1 час: '))
+        bonus = float(input('Размер премии: '))
+        result = time * salary + bonus
+        print(f'Заработная плата  {result}')
+    except ValueError:
+        return print('Введите числовое значение')
+salary_calculation()
+
+
+
+#2)
+result_list = []
+list = [int(i)
+for i in input("Введите числа через пробел: ").split()]
+
+for i in range(1, len(list)):
+
+    if list[i] > list[i-1]:
+
+        (result_list.append(list[i]))
+
+print("Исходный список: ", list)
+
+print("элементы исходного списка, значения которых больше предыдущего элемента: ", result_list)
+
+
+
+#3)
+print([el for el in range(20, 241) if el % 20 == 0 or el % 21 == 0])
+
+
+
+#4)
+list1 = [2, 2, 2, 7, 23, 1, 44, 44, 3, 2, 10, 7, 4, 11]
+list2 = [el for el in list1 if list1.count(el) == 1]
+print(list2)
+
+
+#5)
+from functools import reduce
+
+
+def my_func(el_p, el):
+    return el_p * el
+
+print(f'Список четных значений {[el for el in range(99, 1001) if el % 2 == 0]}')
+print(f'Результат умножения всех элементов списка {reduce(my_func, [el for el in range(99, 1001) if el % 2 == 0])}')
+
+
+#6) а) итератор, генерирующий целые числа, начиная с указанного,
+def gen1():
+    a = int(input('Введите число - начало отсчета: '))
+    from itertools import islice
+    from itertools import count
+
+    for i in islice(count(a), 5): 
+        print(i)
+gen1()
+
+
+#б)итератор, повторяющий элементы некоторого списка, определенного заранее.
+from itertools import cycle
+
+list = [1, 2, 3, 4, 5]
+for i in cycle(list):
+    print(i, end=' ')
+
+
+
+7)from itertools import count
+from math import factorial
+def factgen():
+    for el in count(1):
+        yield factorial(el)
+gen = factgen()
+n = 0
+for elem in gen:
+    if n < 4:
+        print(elem)
+        n += 1
+    else:
+        break
